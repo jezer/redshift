@@ -1,0 +1,26 @@
+{
+  "default_profile": "test",
+  "profiles": {
+    "dev": {
+      "host": "rs-db-dev.smartmart.syngenta.org",
+      "port": 5439,
+      "database": "mio",
+      "user": "preencher_usuario",
+      "password": "preencher_senha"
+    },
+    "test": {
+      "host": "rs-db-test.smartmart.syngenta.org",
+      "port": 5439,
+      "database": "mio",
+      "user": "preencher_usuario",
+      "password": "preencher_senha"
+    },
+    "prod": {
+      "host": "rs-db-prod.smartmart.syngenta.org",
+      "port": 5439,
+      "database": "mio",
+      "user": "preencher_usuario",
+      "password": "preencher_senha"
+    }
+  }
+}
