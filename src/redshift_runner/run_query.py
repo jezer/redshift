@@ -2,6 +2,7 @@ import argparse
 import json
 import socket
 import time
+from datetime import datetime
 from pathlib import Path
 
 
@@ -70,6 +71,18 @@ def run_query(
             return columns, rows, elapsed_ms
 
 
+def persist_result(result: dict, project_root: Path) -> Path:
+    results_dir = project_root / "results"
+    results_dir.mkdir(exist_ok=True)
+    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    profile = result.get("profile", "unknown")
+    query_file = Path(result.get("query_file", "query")).stem
+    filename = f"{ts}_{profile}_{query_file}.json"
+    out_path = results_dir / filename
+    out_path.write_text(json.dumps(result, ensure_ascii=True, default=str), encoding="utf-8")
+    return out_path
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Executa query SQL no Redshift usando perfil local.")
     parser.add_argument("--profile", default="test", help="Perfil de conexao (dev|test|prod)")
@@ -86,6 +99,7 @@ def main() -> int:
     parser.add_argument("--no-ssl", dest="ssl_enabled", action="store_false", help="Desabilita SSL na conexao")
     parser.set_defaults(ssl_enabled=True)
     parser.add_argument("--application-name", default="syg-redshift-runner", help="Nome de aplicacao da conexao")
+    parser.add_argument("--save-results", action="store_true", help="Persiste resultado em results/ com metadados")
     args = parser.parse_args()
 
     config = load_config(Path(args.config_file))
@@ -146,11 +160,16 @@ def main() -> int:
         "mode": "execute",
         "profile": profile,
         "query_file": args.query_file,
+        "executed_at": datetime.now().isoformat(),
         "elapsed_ms": round(elapsed_ms, 2),
         "rows_preview_count": len(rows),
         "columns": columns,
         "rows_preview": rows,
     }
+    if args.save_results:
+        project_root = Path(__file__).resolve().parents[2]
+        saved_path = persist_result(result, project_root)
+        result["saved_to"] = str(saved_path)
     print(json.dumps(result, ensure_ascii=True, default=str))
     return 0
 

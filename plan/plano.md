@@ -1,4 +1,4 @@
-# Plano do projeto redshift
+﻿# Plano do projeto redshift
 
 ## Contexto
 
@@ -52,9 +52,9 @@ Construir um laboratorio enxuto, em Python, para testar solucoes de queries em R
 
 ## Skills eleitas para este plano
 
-- Candidatas: `rotear-skills-contexto`, `manter-planejador`, `manter-atividades`, `especialista-redshift-sql`, `especialista-python`
-- Executora principal (planejamento): `manter-planejador`
-- Apoio: `manter-atividades`, `especialista-redshift-sql`, `especialista-python`
+- Candidatas: `route-skills-by-context`, `maintain-planner`, `maintain-activities`, `redshift-sql-specialist`, `python-specialist`
+- Executora principal (planejamento): `maintain-planner`
+- Apoio: `maintain-activities`, `redshift-sql-specialist`, `python-specialist`
 - Motivo: combinar governanca de plano com suporte tecnico para definicao de atividades praticas em Redshift + Python.
 
 ## Criterios de aceite do plano
@@ -62,3 +62,4 @@ Construir um laboratorio enxuto, em Python, para testar solucoes de queries em R
 1. Plano descreve objetivo, escopo, fora de escopo, entregaveis, riscos e dependencias.
 2. Atividades estao definidas com status inicial e criterio de aceite.
 3. Projeto possui direcionamento tecnico explicito para Python e testes de queries.
+

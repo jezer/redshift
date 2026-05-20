@@ -23,8 +23,9 @@
 
 ## Bootstrap
 
-1. Usar `manter-git` para criar, preparar e sincronizar este repositorio quando necessario.
+1. Usar `maintain-git` para criar, preparar e sincronizar este repositorio quando necessario.
 2. Conferir `git status` antes de branch, commit, pull, merge, rebase ou push.
 3. Nao executar commit ou push na `main`/`master`; criar branch de trabalho antes.
 4. Nao executar operacoes destrutivas sem pedido explicito.
+
 

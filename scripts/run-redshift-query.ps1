@@ -4,6 +4,7 @@ param(
     [string]$ConfigFile = "C:\codes\pv\particular\particular\segredos\syg\redshift-profile.local.json",
     [switch]$DryRun,
     [switch]$Diagnostic,
+    [switch]$SaveResults,
     [bool]$Ssl = $true,
     [string]$ApplicationName = "syg-redshift-runner"
 )
@@ -37,6 +38,10 @@ if ($Ssl) {
     $args += "--ssl"
 } else {
     $args += "--no-ssl"
+}
+
+if ($SaveResults) {
+    $args += "--save-results"
 }
 
 python @args
